@@ -16,7 +16,7 @@ LOG="/home/sumo/attack/ninjalog.log"
 #ninja attack alatt
 if [ "$CONUMBER" > 100 ]; then
 	sed 's/--connlimit-above\ 10/--connlimit-above\ 3/g' $FWALL > $TMPFILE && mv $TMPFILE $FWALL
-	service firevall.sh start >> $LOG
+	service firewall.sh start >> $LOG
 	echo "\n connlimit 3-ra csokkentve \n Datum: $DATE \n" >> $LOG
 	exit
 fi
@@ -24,7 +24,7 @@ fi
 #ha a ninja attack elmult
 if [ "$CONUMBER" < 100 ]; then
 	sed 's/--connlimit-above\ 3/--connlimit-above\ 10/g' $FWALL > $TMPFILE && mv $TMPFILE $FWALL
-	service firevall.sh start >> $LOG
+	service firewall.sh start >> $LOG
 	echo "\n connlimit 10-re novelve \n Datum: $DATE \n" >> $LOG
 	exit
 fi
